@@ -1,6 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { UserDataContext } from '../context/UserContext'
 
 const UserSignup = () => {
   const [ email, setEmail ] = useState('')
@@ -9,23 +10,38 @@ const UserSignup = () => {
   const [ lastName, setLastName ] = useState('')
   const [ userData, setUserData ] = useState({})
 
-  const submitHandler = (e) =>{
-    e.preventDefault();
-    setUserData({
-      email : email,
-      password : password,
-      firstName : firstName,
-      lastName : lastName,
-    })
-    console.log(userData);
-    setEmail("")
-    setPassword("")
-    setFirstName("")
-    setLastName("")
-  }
+  const navigate = useNavigate()
 
+  const { user, setUser } = useContext(UserDataContext)
+  const submitHandler = async (e) => {
+    e.preventDefault()
+    const newUser = {
+      fullname: {
+        firstname: firstName,
+        lastname: lastName
+      },
+      email: email,
+      password: password
+    }
+
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/user/register`, newUser)
+
+    if (response.status === 200) {
+      const data = response.data
+      console.log(data)
+      setUser(data.user)
+      // localStorage.setItem('token', data.token)
+      navigate('/home')
+    }
+
+    setEmail('')
+    setFirstName('')
+    setLastName('')
+    setPassword('')
+
+  }
   return (
-<div>
+    <div>
       <div className='p-7 h-screen flex flex-col justify-between'>
         <div>
           <img className='w-16 mb-10' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYQy-OIkA6In0fTvVwZADPmFFibjmszu2A0g&s" alt="" />
@@ -95,7 +111,6 @@ const UserSignup = () => {
         </div>
       </div>
     </div >
-
   )
 }
 
