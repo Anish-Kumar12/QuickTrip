@@ -8,7 +8,6 @@ const UserSignup = () => {
   const [ password, setPassword ] = useState('')
   const [ firstName, setFirstName ] = useState('')
   const [ lastName, setLastName ] = useState('')
-  const [ userData, setUserData ] = useState({})
 
   const navigate = useNavigate()
 
@@ -30,7 +29,7 @@ const UserSignup = () => {
       const data = response.data
       console.log(data)
       setUser(data.user)
-      // localStorage.setItem('token', data.token)
+      localStorage.setItem('token', data.token)
       navigate('/home')
     }
 
