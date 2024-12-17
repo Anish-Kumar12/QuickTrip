@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import "remixicon/fonts/remixicon.css";
 import LocationSearchPanel from "../Components/LocationSearchPanel";
+import VehiclePanel from "../Components/VehiclePanel";
 
 const Home = () => {
   const [pickUp, setPickUp] = useState("");
@@ -11,6 +12,8 @@ const Home = () => {
   const [panelOpen, setPanelOpen] = useState(false);
   const panelref = useRef(null);
   const panelCloseRef = useRef(null);
+  const vehiclePanelRef = useRef(null);
+  const confirmRidePanelRef = useRef(null);
 
   const submithandler = (e) => {
     e.preventDefault();
@@ -54,7 +57,7 @@ const Home = () => {
           alt=""
         />
       </div>
-      <div className="flex flex-col h-screen justify-end top-0 w-full absolute">
+      <div className="flex flex-col h-screen justify-end top-0 w-full absolute ">
         <div className="h-[30%] p-6 bg-white relative">
           <h5
             ref={panelCloseRef}
@@ -87,8 +90,14 @@ const Home = () => {
           </form>
         </div>
         <div ref={panelref} className="h-0 bg-white overflow-hidden">
-          <LocationSearchPanel/>
+          <LocationSearchPanel />
         </div>
+      </div>
+      <div
+        ref={vehiclePanelRef}
+        className="fixed w-full z-10 bottom-0 translate-y-full bg-white px-3 py-10 pt-12"
+      >
+        <VehiclePanel />
       </div>
     </div>
   );
