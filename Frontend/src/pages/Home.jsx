@@ -7,6 +7,7 @@ import LocationSearchPanel from "../Components/LocationSearchPanel";
 import VehiclePanel from "../Components/VehiclePanel";
 import ConfirmRide from "../Components/ConfirmRide";
 import LookingForDriver from "../Components/LookingForDrivers";
+import WaitingForDriver from "../Components/WaitingForDriver";
 
 const Home = () => {
   const [pickUp, setPickUp] = useState("");
@@ -16,6 +17,7 @@ const Home = () => {
   const [confirmRidePanel, setConfirmRidePanel] = useState(false);
   const [vehicleType, setVehicleType] = useState(null);
   const [vehicleFound, setVehicleFound] = useState(false);
+  const [waitingForDriver, setWaitingForDriver] = useState(false);
 
   const [fare, setFare] = useState({});
   const panelref = useRef(null);
@@ -23,6 +25,7 @@ const Home = () => {
   const vehiclePanelRef = useRef(null);
   const confirmRidePanelRef = useRef(null);
   const vehicleFoundRef = useRef(null);
+  const waitingForDriverRef = useRef(null);
 
   const submithandler = (e) => {
     e.preventDefault();
@@ -79,17 +82,34 @@ const Home = () => {
     },
     [confirmRidePanel]
   );
-  useGSAP(function () {
-    if (vehicleFound) {
+  useGSAP(
+    function () {
+      if (vehicleFound) {
         gsap.to(vehicleFoundRef.current, {
-            transform: 'translateY(0)'
-        })
-    } else {
+          transform: "translateY(0)",
+        });
+      } else {
         gsap.to(vehicleFoundRef.current, {
-            transform: 'translateY(100%)'
-        })
-    }
-}, [ vehicleFound ])
+          transform: "translateY(100%)",
+        });
+      }
+    },
+    [vehicleFound]
+  );
+  useGSAP(
+    function () {
+      if (waitingForDriver) {
+        gsap.to(waitingForDriverRef.current, {
+          transform: "translateY(0)",
+        });
+      } else {
+        gsap.to(waitingForDriverRef.current, {
+          transform: "translateY(100%)",
+        });
+      }
+    },
+    [waitingForDriver]
+  );
 
   return (
     <div className="h-screen relative overflow-hidden">
@@ -175,6 +195,15 @@ const Home = () => {
           fare={fare}
           vehicleType={vehicleType}
           setVehicleFound={setVehicleFound}
+        />
+      </div>
+      <div
+        ref={waitingForDriverRef}
+        className="fixed w-full  z-10 bottom-0  bg-white px-3 py-6 pt-12"
+      >
+        <WaitingForDriver
+          setVehicleFound={setVehicleFound}
+          setWaitingForDriver={setWaitingForDriver}
         />
       </div>
     </div>
