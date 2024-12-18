@@ -119,9 +119,9 @@ const Home = () => {
         alt=""
       />
       <div className="h-screen w-screen">
-        <img
+      <img
           className="h-full w-full object-cover"
-          src="https://th.bing.com/th/id/OIP.Ait2P0IoB2I1wCLskLuvsQHaFw?rs=1&pid=ImgDetMain"
+          src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif"
           alt=""
         />
       </div>
