@@ -7,6 +7,7 @@ const connectDB = require('./db/db');
 const userRouter = require('./routes/user.routes');
 const cookieParser = require('cookie-parser');
 const captainRouter = require('./routes/captain.routes');
+const mapRouter = require('./routes/maps.routes');
 
 connectDB()
 
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use('/user', userRouter); 
 app.use('/captain', captainRouter);
+app.use('/maps', mapRouter);
 
 
 
