@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import CaptainDetails from "../Components/CaptainDetails";
+import ConfirmRidePopUp from "../Components/ConfirmRide";
+import RidePopUp from "../Components/RidePopUp";
+
 
 const CaptainHome = () => {
+  const [ridePopupPanel, setRidePopupPanel] = useState(false);
+  const [confirmRidePopupPanel, setConfirmRidePopupPanel] = useState(false);
+
+  const ridePopupPanelRef = useRef(null);
+  const confirmRidePopupPanelRef = useRef(null);
+  const [ride, setRide] = useState(null);
   return (
     <div className="h-screen">
       <div className="fixed p-6 top-0 flex items-center justify-between w-screen">
@@ -27,6 +36,24 @@ const CaptainHome = () => {
       </div>
       <div className="h-2/5 p-6">
         <CaptainDetails />
+      </div>
+      <div
+        ref={ridePopupPanelRef}
+        className="fixed w-full z-10 bottom-0 translate-y-full bg-white px-3 py-10 pt-12"
+      >
+        <RidePopUp
+          setRidePopupPanel={setRidePopupPanel}
+          setConfirmRidePopupPanel={setConfirmRidePopupPanel}
+        />
+      </div>
+      <div
+        ref={confirmRidePopupPanelRef}
+        className="fixed w-full h-screen z-10 bottom-0 translate-y-full bg-white px-3 py-10 pt-12"
+      >
+        <ConfirmRidePopUp
+          setConfirmRidePopupPanel={setConfirmRidePopupPanel}
+          setRidePopupPanel={setRidePopupPanel}
+        />
       </div>
     </div>
   );
