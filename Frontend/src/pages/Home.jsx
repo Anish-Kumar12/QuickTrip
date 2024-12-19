@@ -51,6 +51,21 @@ const Home = () => {
       console.log("Error", e);
     }
   };
+  async function createRide() {
+    const response = await axios.post(
+      `${import.meta.env.VITE_BASE_URL}/ride/create`,
+      {
+        pickup: pickUp,
+        destination,
+        vehicleType,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+  }
   const handleDestinationChange = async (e) => {
     setDestination(e.target.value);
     try {
@@ -151,10 +166,10 @@ const Home = () => {
     setVehiclePanel(true);
     setPanelOpen(false);
 
-    const response = await axios.get( 
+    const response = await axios.get(
       `${import.meta.env.VITE_BASE_URL}/ride/get-fare`,
       {
-        params: { pickup:pickUp, destination },
+        params: { pickup: pickUp, destination },
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -253,9 +268,12 @@ const Home = () => {
       >
         <ConfirmRide
           pickUp={pickUp}
+          createRide={createRide}
           destination={destination}
           setConfirmRidePanel={setConfirmRidePanel}
           setVehicleFound={setVehicleFound}
+          fare={fare}
+          vehicleType={vehicleType}
         />
       </div>
       <div
@@ -264,6 +282,7 @@ const Home = () => {
       >
         <LookingForDriver
           pickup={pickUp}
+          createRide={createRide}
           destination={destination}
           fare={fare}
           vehicleType={vehicleType}
