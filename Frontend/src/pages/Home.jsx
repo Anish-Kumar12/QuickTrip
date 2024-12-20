@@ -282,7 +282,6 @@ const Home = () => {
       >
         <LookingForDriver
           pickup={pickUp}
-          createRide={createRide}
           destination={destination}
           fare={fare}
           vehicleType={vehicleType}

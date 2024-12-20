@@ -1,10 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import CaptainDetails from "../Components/CaptainDetails";
 import ConfirmRidePopUp from "../Components/ConfirmRidePopUp";
 import RidePopUp from "../Components/RidePopUp";
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
+import { CaptainDataContext } from "../context/CapatainContext";
 
 
 const CaptainHome = () => {
@@ -14,6 +15,8 @@ const CaptainHome = () => {
   const ridePopupPanelRef = useRef(null);
   const confirmRidePopupPanelRef = useRef(null);
   const [ride, setRide] = useState(null);
+  const { captain } = useContext(CaptainDataContext)
+
 
   useGSAP(function () {
     if (ridePopupPanel) {
