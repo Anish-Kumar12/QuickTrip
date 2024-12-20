@@ -5,6 +5,7 @@ const captainModel = require('../models/captain.model');
 
 module.exports.authUser = async (req, res, next) => {
     const token = req.cookies.token || req.headers.authorization?.split(' ')[1];
+
     if (!token) {
         return res.status(401).json({ message: "Token not found" });
     }
@@ -28,9 +29,12 @@ module.exports.authUser = async (req, res, next) => {
 
 module.exports.authCaptain = async (req, res, next) => {
     const token = req.cookies.token || req.headers.authorization?.split(' ')[1];
+    console.log('Received token (authCaptain):', token); // Log the token for debugging
+
     if (!token) {
         return res.status(401).json({ message: 'Unauthorized' });
     }
+
 
     try {
         const isBlacklisted = await BlacklistTokenModel.findOne({ token });
