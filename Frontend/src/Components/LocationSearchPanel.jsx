@@ -1,6 +1,6 @@
 import React from 'react'
 
-const LocationSearchPanel = ({ suggestions, setVehiclePanel, setPanelOpen, setPickup, setDestination, activeField }) => {
+const LocationSearchPanel = ({ suggestions, setPickup, setDestination, activeField }) => {
 
     const handleSuggestionClick = (suggestion) => {
         if (activeField === 'pickup') {
