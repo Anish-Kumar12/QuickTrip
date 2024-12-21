@@ -115,8 +115,6 @@ module.exports.endRide = async (req, res) => {
 
     const { rideId } = req.body;
 
-    console.log(req.captain)
-
     try {
         const ride = await rideService.endRide({ rideId, captain: req.captain });
 
