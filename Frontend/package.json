@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm install",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
+
     
   },
   "dependencies": {
