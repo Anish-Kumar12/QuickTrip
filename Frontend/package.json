@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm install && npm run dev",
+    "build": "npm install",
     "lint": "eslint .",
     "preview": "vite preview"
+    
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
