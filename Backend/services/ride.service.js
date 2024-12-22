@@ -62,14 +62,15 @@ module.exports.createRide = async ({
     }
 
     const fare = await getFare(pickup, destination);
-
-
+    const distanceTime = await mapService.getDistanceTime(pickup, destination);
 
     const ride = rideModel.create({
         user,
         pickup,
         destination,
         otp: getOtp(6),
+        distance : distanceTime.distance.value,
+        duration: distanceTime.duration.value,
         fare: fare[ vehicleType ]
     })
 

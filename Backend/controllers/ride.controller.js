@@ -22,7 +22,7 @@ module.exports.createRide = async (req, res) => {
 
         ride.otp = ""
 
-        const rideWithUser = await rideModel.findOne({ _id: ride._id }).populate('user');
+        const rideWithUser = await rideModel.findOne({ _id: ride._id }).populate('user');        
 
         captainsInRadius.map(captain => {
 
