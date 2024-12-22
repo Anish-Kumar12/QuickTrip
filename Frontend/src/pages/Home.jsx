@@ -231,8 +231,9 @@ const Home = () => {
       </div>
       <div
         ref={vehiclePanelRef}
-        className="fixed w-full z-10 bottom-0 translate-y-full bg-white px-3 py-10 pt-12"
-      >
+        className={` bottom-0 w-full bg-white p-6 border-t border-gray-200 z-30 ${
+          vehiclePanel ? "fixed" : ""
+        }`}      >
         <VehiclePanel
           selectVehicle={setVehicleType}
           fare={fare}
@@ -242,8 +243,9 @@ const Home = () => {
       </div>
       <div
         ref={confirmRidePanelRef}
-        className="fixed w-full z-10 bottom-0 translate-y-full bg-white px-3 py-6 pt-12"
-      >
+        className={` bottom-0 w-full bg-white p-6 border-t border-gray-200 z-30 ${
+          confirmRidePanel ? "fixed" : ""
+        }`}      >
         <ConfirmRide
           createRide={createRide}
           pickup={pickUp}
@@ -256,8 +258,9 @@ const Home = () => {
       </div>
       <div
         ref={vehicleFoundRef}
-        className="fixed w-full z-10 bottom-0 translate-y-full bg-white px-3 py-6 pt-12"
-      >
+        className={` bottom-0 w-full bg-white p-6 border-t border-gray-200 z-30 ${
+          vehicleFound ? "fixed" : ""
+        }`}      >
         <LookingForDriver
           createRide={createRide}
           pickup={pickUp}
@@ -269,8 +272,9 @@ const Home = () => {
       </div>
       <div
         ref={waitingForDriverRef}
-        className="fixed w-full z-10 bottom-0 bg-white px-3 py-6 pt-12"
-      >
+        className={` bottom-0 w-full bg-white p-6 border-t border-gray-200 z-30 ${
+          waitingForDriver ? "fixed" : ""
+        }`}      >
         <WaitingForDriver
           ride={ride}
           setVehicleFound={setVehicleFound}
