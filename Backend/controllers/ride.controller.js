@@ -25,9 +25,6 @@ module.exports.createRide = async (req, res) => {
         const rideWithUser = await rideModel.findOne({ _id: ride._id }).populate('user');        
 
         captainsInRadius.map(captain => {
-
-            console.log(captain, rideWithUser);
-
             sendMessageToSocketId(captain.socketId, {
                 event: 'new-ride',
                 data: rideWithUser
@@ -93,8 +90,6 @@ module.exports.startRide = async (req, res) => {
 
     try {
         const ride = await rideService.startRide({ rideId, otp, captain: req.captain });
-
-        console.log(ride);
 
         sendMessageToSocketId(ride.user.socketId, {
             event: 'ride-started',
